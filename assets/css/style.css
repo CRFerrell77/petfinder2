@@ -1,4 +1,31 @@
+body {
+    font-family: 'Baloo Tamma', cursive;
+}
+
 .outline {
     border: 1px solid blue;
     margin: 10px;
+}
+
+.advInput {
+    border:0px solid transparent; /* this was 1px earlier */
+}
+
+.center{
+    text-align: center;
+}
+
+.buttonMatch {
+    padding-top: 10px;
+    color: white;
+    background-color: lightseagreen;
+}
+
+.btnMatch {
+    color: white;
+    background-color: lightseagreen;
+}
+.btnMatch:hover {
+    color: tomato;
+    background-color: lightseagreen;
 }

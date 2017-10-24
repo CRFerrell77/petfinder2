@@ -16,8 +16,8 @@
 	<!-- Linking CSS -->
     <link rel="stylesheet" type="text/css" 	href="assets\css\style.css">
 
-    <!-- bangers comic font -->
-    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <!-- baloo tamma font -->
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma" rel="stylesheet">
 
     <!-- Added link to the jQuery Library -->   
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -64,7 +64,7 @@
                     
             </nav>
 
-            <div class="row outline">
+            <div id="topBox" class="row outline">
                 <div id="randPet" class="col-md-8">
                     <p>random dogs across the world</p>
                 </div>
@@ -72,18 +72,128 @@
                     <p>most searched for pets</p>
                 </div>
             </div>
-            <div id="searchBoxReq" class="row outline">
-                <p>search box: required</p>
+
+            <div id="searchBoxReq" class="row">
+                <h3>search box: required</h3>
                 <!-- Animal Type / Zipcode -->
+                <div class="form-group">
+                    <label for="aniType">Kind of Animal? ('Dog', or 'Cat', etc)</label>
+                    <input type="text" class="form-control" id="aniType"></input>
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">Find pets nearby which Zip Code? (example: 60640)</label>
+                    <input type="text" class="form-control" id="zipCode"></input>
+                </div>
+                <div class="form-group">
+                    <label for="aniBreed">Specific Breed: (optional)</label>
+                    <input type="text" class="form-control" id="aniBreed"></input>
+                </div>
             </div>
-            <div id="searchBoxAdv" class="row outline">
-                <p>search box: advanced</p>
-                <!-- breed / age / gender / size / location / distance from me / characteristics / my house has -->
+
+            <div id="searchBoxAdv" class="row">
+                <h3>Click here for advanced search!</h3>
+                <div id="hider">
+                    <!-- Age range -->
+                        <!-- button version -->
+                        <div id="ageBtnRow" class="row buttonMatch center">
+                            <div class="col col-md-5">
+                                <p class="buttonMatch">Did you have an age in mind?</p>
+                            </div>
+                            <div class="col col-md-7 buttonMatch">
+                                <button type="button" class="btn ageInput btnMatch">Baby</button>
+                                <button type="button" class="btn ageInput btnMatch">Young</button>
+                                <button type="button" class="btn ageInput btnMatch">Adult</button>
+                                <button type="button" class="btn ageInput btnMatch">Senior</button>
+                            </div>
+                        </div>
+                        <br>
+
+                    <!-- Size range -->
+                        <!-- button version -->
+                        <div id="sizeBtnRow" class="row buttonMatch center">
+                            <div class="col col-md-5">
+                                <p class="buttonMatch">Did you have a size in mind?</p>
+                            </div>
+                            <div class="col col-md-7 buttonMatch">
+                                <button type="button" class="btn szInput btnMatch">Small</button>
+                                <button type="button" class="btn szInput btnMatch">Medium</button>
+                                <button type="button" class="btn szInput btnMatch">Large</button>
+                                <button type="button" class="btn szInput btnMatch">X-Lrg</button>
+                            </div>
+                        </div>
+                        <br>
+
+                    <!-- Animal gender -->
+                        <!-- button version -->
+                        <div id="genderBtnRow" class="row buttonMatch center">
+                            <div class="col col-md-5">
+                                <p class="buttonMatch">Did you have a gender in mind?</p>
+                            </div>
+                            <div class="col col-md-7 buttonMatch">
+                                <button type="button" class="btn genInput btnMatch">Female</button>
+                                <button type="button" class="btn genInput btnMatch">Male</button>
+                                <button type="button" class="btn genInput btnMatch">Unknown</button>
+                            </div>
+                        </div>
+                        <br>
+    
+                    <!-- Distance away: default < 10 miles -->
+                        <!-- button version -->
+                        <div id="distBtnRow" class="row buttonMatch center">
+                            <div class="col col-md-5">
+                                <p class="buttonMatch">Up to how many miles from your home?</p>
+                            </div>
+                            <div class="col col-md-7 buttonMatch">
+                                <button type="button" class="btn distInput btnMatch">25</button>
+                                <button type="button" class="btn distInput btnMatch">50</button>
+                                <button type="button" class="btn distInput btnMatch">100</button>
+                                <button type="button" class="btn distInput btnMatch">Any</button>
+                            </div>
+                        </div>
+                        <br>
+
+                    <!-- Animal characteristics: -->
+                        <!-- button version -->
+                        <div id="chrBtnRow" class="row buttonMatch center">
+                            <div class="col col-md-5">
+                                <p class="buttonMatch">I am looking for:</p>
+                            </div>
+                            <div class="col col-md-7 buttonMatch">
+                                <button type="button" class="btn chrInput btnMatch">House Trained</button>
+                                <button type="button" class="btn chrInput btnMatch">Declawed</button>
+                                <button type="button" class="btn chrInput btnMatch">Special needs</button>
+                            </div>
+                        </div>
+                        <br>
+
+                    <!-- My house has: -->
+                        <!-- button version -->
+                        <div id="houseBtnRow" class="row buttonMatch center">
+                            <div class="col col-md-5">
+                                <p class="buttonMatch">My home has:</p>
+                            </div>
+                            <div class="col col-md-7 buttonMatch">
+                                <button type="button" class="btn houseInput btnMatch">Cats</button>
+                                <button type="button" class="btn houseInput btnMatch">Dogs</button>
+                                <button type="button" class="btn houseInput btnMatch">Young Children</button>
+                            </div>
+                        </div>
+                        <br>
+
+                </div>
             </div>
-            <div  id="results" class="row outline">
+            <div class="row">
+                <button type="button" id="searchBtn" class="btn btn-success pull-right">Find your pet!</button>
+                <button type="button" id="resetBtn" class="btn btn-primary pull-right">Reset</button>
+            </div>
+
+            <!-- This area to return results -->
+            <div id="results" class="row hidden">
                 <p>results</p>
             </div>
-            <div id="miscBox" class="row outline">
+
+            <!-- This area for adverts and "how to pet" -->
+            <div id="miscBox" class="row">
                 <p>misc</p>
             </div>
         </div>
