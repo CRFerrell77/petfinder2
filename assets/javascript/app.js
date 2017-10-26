@@ -3,13 +3,13 @@
 //     event.preventDefault();
 // });
 
-var animal = ""; var zipCode = ""; var breed = ""; var age = []; var size = []; var gender = []; var dist = []; var character = []; var house = []; 
+var animal = ""; var aniType = ""; var zipCode = ""; var breed = ""; var age = []; var size = []; var gender = []; var dist = []; var character = []; var house = []; 
 
 $(document).ready(function() {
 
     //set the Adv Inputs to be slid up
     function startSlidUp() {
-        $("#hider").slideToggle("slow");
+        $("#hider").slideToggle(.0001);
     }
 
     startSlidUp();
@@ -61,12 +61,28 @@ $(document).ready(function() {
         console.log("house has: " + house);
     });
 
+    //dropdown getter
+    $(".dropSel").click(function(event){
+        event.preventDefault();
+
+        //pull the data from the dropdown list
+        aniType = $(this).attr("data");
+
+        //pull the text from the dropdown to rename the dropdown
+        var renameBtn = $(this).text();
+
+        //rename the dropdown
+        $(".typeBtn").html(renameBtn + " <span class='caret'></span>");
+
+    });
+
+    //Search button
     $("#searchBtn").click(function(event){
         event.preventDefault();
 
         $("#results").removeClass("hidden");
 
-        animal = $("#aniType").val().trim();
+        animal = aniType;
         console.log("type: " + animal);
         zipCode = $("#zipCode").val().trim();
         console.log("zip: " + zipCode);
