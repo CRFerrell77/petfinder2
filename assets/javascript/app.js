@@ -75,3 +75,20 @@ $(document).ready(function() {
     });
 
 });
+
+//petfinder API function
+function callPets(animal, location, breed, size, sex, age,){
+    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location;
+    $.ajax({
+    url: url,
+    dataType: 'jsonp',
+    method: 'GET',
+    }).done(function(result) {
+
+        for(var i = 0; i < result.petfinder.pets.pet.length; i++){
+            $("body").append("<div id="+i+"><img src='"+result.petfinder.pets.pet[i].media.photos.photo[2].$t+"'/ ></div");
+            $("#"+i).append(result.petfinder.pets.pet[i].shelterId.$t);
+        }
+
+    });
+};
