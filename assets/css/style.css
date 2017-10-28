@@ -25,7 +25,13 @@ body {
     color: white;
     background-color: lightseagreen;
 }
+
 .btnMatch:hover {
     color: tomato;
     background-color: lightseagreen;
+}
+
+.btnMatch:clicked {
+    color: white;
+    font-family: 'Baloo Tamma', cursive;
 }

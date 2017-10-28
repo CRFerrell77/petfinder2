@@ -95,7 +95,7 @@
                         <li><a class="dropSel" href="#" data="horse">Horse</a></li>
                         <li><a class="dropSel" href="#" data="bird">Bird</a></li>
                         <li><a class="dropSel" href="#" data="reptile">Scales, Fins and Others</a></li>
-                        <li><a class="dropSel" href="#" data="barnyeard">Barnyard</a></li>
+                        <li><a class="dropSel" href="#" data="barnyard">Barnyard</a></li>
                     </ul>
                 </div>
                 <br>
@@ -126,7 +126,7 @@
                                 <p class="buttonMatch">Did you have an age in mind?</p>
                             </div>
                             <div class="col col-md-7 buttonMatch">
-                                <button type="button" class="btn ageInput btnMatch">Baby</button>
+                                <button type="button" class="btn ageInput btnMatch">Baby</button>    
                                 <button type="button" class="btn ageInput btnMatch">Young</button>
                                 <button type="button" class="btn ageInput btnMatch">Adult</button>
                                 <button type="button" class="btn ageInput btnMatch">Senior</button>
@@ -141,10 +141,10 @@
                                 <p class="buttonMatch">Did you have a size in mind?</p>
                             </div>
                             <div class="col col-md-7 buttonMatch">
-                                <button type="button" class="btn szInput btnMatch">Small</button>
-                                <button type="button" class="btn szInput btnMatch">Medium</button>
-                                <button type="button" class="btn szInput btnMatch">Large</button>
-                                <button type="button" class="btn szInput btnMatch">X-Lrg</button>
+                                <button type="button" class="btn szInput btnMatch" data="S">Small</button>
+                                <button type="button" class="btn szInput btnMatch" data="M">Medium</button>
+                                <button type="button" class="btn szInput btnMatch" data="L">Large</button>
+                                <button type="button" class="btn szInput btnMatch" data="XL">X-Lrg</button>
                             </div>
                         </div>
                         <br>
@@ -156,9 +156,8 @@
                                 <p class="buttonMatch">Did you have a gender in mind?</p>
                             </div>
                             <div class="col col-md-7 buttonMatch">
-                                <button type="button" class="btn genInput btnMatch">Female</button>
-                                <button type="button" class="btn genInput btnMatch">Male</button>
-                                <button type="button" class="btn genInput btnMatch">Unknown</button>
+                                <button type="button" class="btn genInput btnMatch" data="F">Female</button>
+                                <button type="button" class="btn genInput btnMatch" data="M">Male</button>
                             </div>
                         </div>
                         <br>
@@ -209,8 +208,13 @@
                 </div>
             </div>
             <div class="row">
-                <button type="button" id="searchBtn" class="btn btn-success pull-right">Find your pet!</button>
-                <button type="button" id="resetBtn" class="btn btn-primary pull-right">Reset</button>
+                <div class="col-md-9">
+                    <p id="keepTrack" class="hidden">Keep track:</p>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" id="searchBtn" class="btn btn-success pull-right">Find your pet!</button>
+                    <button type="button" id="resetBtn" class="btn btn-primary pull-right">Reset</button>
+                </div>
             </div>
 
             <!-- This area to return results -->
