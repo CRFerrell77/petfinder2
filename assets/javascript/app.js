@@ -77,8 +77,8 @@ $(document).ready(function() {
 });
 
 //petfinder API function
-function callPets(animal, location, breed, size, sex, age,){
-    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location;
+function callPets(animal, location){
+    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location+"&count=10";
     $.ajax({
     url: url,
     dataType: 'jsonp',
@@ -86,9 +86,27 @@ function callPets(animal, location, breed, size, sex, age,){
     }).done(function(result) {
 
         for(var i = 0; i < result.petfinder.pets.pet.length; i++){
-            $("body").append("<div id="+i+"><img src='"+result.petfinder.pets.pet[i].media.photos.photo[2].$t+"'/ ></div");
-            $("#"+i).append(result.petfinder.pets.pet[i].shelterId.$t);
+            $("table").append("<tr class='showData' id='"+i+"'><td colspan=2><img src='"+result.petfinder.pets.pet[i].media.photos.photo[2].$t+"'/ ></td><td>"+result.petfinder.pets.pet[i].name.$t+"</td></tr><tr class='hideData' data='hidden' id='a"+i+"'><td>"+result.petfinder.pets.pet[i].description.$t+"</td></tr>");
+
+            if(result.petfinder.pets.pet[i].breeds.breed[1] === undefined){
+                 $("#"+i).append("<td>"+result.petfinder.pets.pet[i].breeds.breed.$t+"</td></tr>");
+            }
+            else{
+                 $("#"+i).append("<td>"+result.petfinder.pets.pet[i].breeds.breed[0].$t+" & "+result.petfinder.pets.pet[i].breeds.breed[1].$t+"</td>");
+            }
         }
 
     });
 };
+
+callPets("dog", 60640);
+
+$(document).on("click", ".showData", function(){
+    if($("#a"+$(this).attr("id")).attr('data') === "hidden"){
+        $("#a"+$(this).attr("id")).show();
+        $("#a"+$(this).attr("id")).attr('data', "showing");
+    } else{
+        $("#a"+$(this).attr("id")).hide();
+        $("#a"+$(this).attr("id")).attr('data', "hidden");
+    }
+});

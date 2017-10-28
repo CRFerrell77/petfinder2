@@ -29,3 +29,17 @@ body {
     color: tomato;
     background-color: lightseagreen;
 }
+
+img{
+    width: 100px;
+    margin: 5px;
+}
+
+table{
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+.hideData{
+    display: none; 
+}
