@@ -9,11 +9,11 @@
 	
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>PetFinder v2.0 (ours is cooler)</title>
-	
+    
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
-	<!-- Linking CSS -->
+    <!-- Linking CSS -->
     <link rel="stylesheet" type="text/css" 	href="assets\css\style.css">
 
     <!-- baloo tamma font -->
@@ -21,6 +21,11 @@
 
     <!-- Added link to the jQuery Library -->   
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- local JS-->
     <script type="text/javascript" src="assets\javascript\app.js"></script>
 
 </head>
@@ -74,12 +79,33 @@
             </div>
 
             <div id="searchBoxReq" class="row">
-                <h3>search box: required</h3>
+                <h2>search box: required</h2>
                 <!-- Animal Type / Zipcode -->
+
+                <p>Kind of Animal? ('Dog', or 'Cat', etc)</p>
+                <div class="dropdown">
+                    <button class="btn buttonMatch dropdown-toggle typeBtn" type="button" data-toggle="dropdown">
+                        Type
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropSel" href="#" data="dog">Dog</a></li>
+                        <li><a class="dropSel" href="#" data="cat">Cat</a></li>
+                        <li><a class="dropSel" href="#" data="smallfurry">Small and Furry</a></li>
+                        <li><a class="dropSel" href="#" data="horse">Horse</a></li>
+                        <li><a class="dropSel" href="#" data="bird">Bird</a></li>
+                        <li><a class="dropSel" href="#" data="reptile">Scales, Fins and Others</a></li>
+                        <li><a class="dropSel" href="#" data="barnyard">Barnyard</a></li>
+                    </ul>
+                </div>
+                <br>
+
+<!-- 
                 <div class="form-group">
                     <label for="aniType">Kind of Animal? ('Dog', or 'Cat', etc)</label>
                     <input type="text" class="form-control" id="aniType"></input>
-                </div>
+                </div> -->
+
                 <div class="form-group">
                     <label for="zipCode">Find pets nearby which Zip Code? (example: 60640)</label>
                     <input type="text" class="form-control" id="zipCode"></input>
@@ -100,7 +126,7 @@
                                 <p class="buttonMatch">Did you have an age in mind?</p>
                             </div>
                             <div class="col col-md-7 buttonMatch">
-                                <button type="button" class="btn ageInput btnMatch">Baby</button>
+                                <button type="button" class="btn ageInput btnMatch">Baby</button>    
                                 <button type="button" class="btn ageInput btnMatch">Young</button>
                                 <button type="button" class="btn ageInput btnMatch">Adult</button>
                                 <button type="button" class="btn ageInput btnMatch">Senior</button>
@@ -115,10 +141,10 @@
                                 <p class="buttonMatch">Did you have a size in mind?</p>
                             </div>
                             <div class="col col-md-7 buttonMatch">
-                                <button type="button" class="btn szInput btnMatch">Small</button>
-                                <button type="button" class="btn szInput btnMatch">Medium</button>
-                                <button type="button" class="btn szInput btnMatch">Large</button>
-                                <button type="button" class="btn szInput btnMatch">X-Lrg</button>
+                                <button type="button" class="btn szInput btnMatch" data="S">Small</button>
+                                <button type="button" class="btn szInput btnMatch" data="M">Medium</button>
+                                <button type="button" class="btn szInput btnMatch" data="L">Large</button>
+                                <button type="button" class="btn szInput btnMatch" data="XL">X-Lrg</button>
                             </div>
                         </div>
                         <br>
@@ -130,9 +156,8 @@
                                 <p class="buttonMatch">Did you have a gender in mind?</p>
                             </div>
                             <div class="col col-md-7 buttonMatch">
-                                <button type="button" class="btn genInput btnMatch">Female</button>
-                                <button type="button" class="btn genInput btnMatch">Male</button>
-                                <button type="button" class="btn genInput btnMatch">Unknown</button>
+                                <button type="button" class="btn genInput btnMatch" data="F">Female</button>
+                                <button type="button" class="btn genInput btnMatch" data="M">Male</button>
                             </div>
                         </div>
                         <br>
@@ -183,8 +208,13 @@
                 </div>
             </div>
             <div class="row">
-                <button type="button" id="searchBtn" class="btn btn-success pull-right">Find your pet!</button>
-                <button type="button" id="resetBtn" class="btn btn-primary pull-right">Reset</button>
+                <div class="col-md-9">
+                    <p id="keepTrack" class="hidden">Keep track:</p>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" id="searchBtn" class="btn btn-success pull-right">Find your pet!</button>
+                    <button type="button" id="resetBtn" class="btn btn-primary pull-right">Reset</button>
+                </div>
             </div>
 
             <!-- This area to return results -->
