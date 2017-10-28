@@ -3,7 +3,6 @@ body {
 }
 
 .outline {
-    border: 1px solid blue;
     border: 1px solid green;
     margin: 10px;
 }
@@ -32,7 +31,11 @@ body {
     background-color: lightseagreen;
 }
 
-<<<<<<< HEAD
+.btnMatch:clicked {
+    color: white;
+    font-family: 'Baloo Tamma', cursive;
+}
+
 img{
     width: 100px;
     margin: 5px;
@@ -45,9 +48,5 @@ table{
 
 .hideData{
     display: none; 
-=======
-.btnMatch:clicked {
-    color: white;
-    font-family: 'Baloo Tamma', cursive;
->>>>>>> 2ff78b5541fae1be84fb8a5b65cfd08e477396ee
 }
+

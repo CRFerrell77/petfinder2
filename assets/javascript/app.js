@@ -114,16 +114,10 @@ $(document).ready(function() {
         });
 
 });
-
+// not in the document.ready!
 //petfinder API function
-<<<<<<< HEAD
 function callPets(animal, location){
     var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location+"&count=10";
-=======
-// not in the document.ready!
-function callPets(animal, location, breed, size, sex, age,){
-    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location;
->>>>>>> 2ff78b5541fae1be84fb8a5b65cfd08e477396ee
     $.ajax({
     url: url,
     dataType: 'jsonp',
