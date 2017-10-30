@@ -1,3 +1,4 @@
+
  var config = {
     apiKey: "AIzaSyAyQONpbGnmz5P9HxgnYJ4ZBjz6tcCx-NA",
     authDomain: "petfinder2-2538c.firebaseapp.com",
@@ -10,42 +11,53 @@
 
   var database = firebase.database();
 
-  $(".btn").on('click', function(event){
-  	event.preventDefault();
 
-var  = $("").val().trim();
-var  = $("").val().trim();
-var  = $("").val().trim();
-var  = $("").val().trim();
-
-
-
-
-database.ref().push(newTrain);
-
-
-
-
-$("").val("");
-$("").val("");
-$("").val("");
-$("").val("");
-
-  });
-
+//
+    var dogCounter = 0;
+    var catCounter = 0;
+    var horseCounter = 0;
+    var smallfurryCounter = 0;
+    var scalesCounter = 0;
+    var barnyardCounter = 0;
+    var birdCounter = 0;
   
+     
+  function databasePie(){
 
 
- database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+if ( = "dog") {
+  dogCounter++;
+}else if (userPick = "cat") {
+  catCounter++;
+}else if (userPick = "horse") {
+  horsCounter++;
+}else if (userPick = "small-furry") {
+  smallfurryCounter++;
+}else if (userPick = "scales") {
+  scalesCounter++;
+}else if (userPick = "barnyard") {
+  barnyardCounter++;
+}else if (userPick = "bird") {
+  birdCounter++;
+}else {
+  console.log("no animal chosen");
+}
 
-  	var = childSnapshot.val().
-  	var  = childSnapshot.val()
-  	var  = childSnapshot.val()
-  	var  = childSnapshot.val().
-
-
-
-
-$("# > tbody").append("<tr><td>" + xx + "</td><td>" + xx + "</td><td>" +
-  xx + "</td><td>" + xx + "</td><td>" + xx + "</td></tr>");
+   
+      database.ref().set({
+  
+              dogs: dogCounter,
+              cats: catCounter,
+              horse: horseCounter,
+              smallfurry: smallfurryCounter,
+              scales: scalesCounter,
+              barnyard: barnyardCounter,
+              bird: birdCounter
+                
 });
+}
+
+     function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+    }
+  
