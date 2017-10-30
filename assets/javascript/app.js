@@ -3,7 +3,7 @@
 //     event.preventDefault();
 // });
 
-var animal = ""; var aniType = ""; var zipCode = ""; var breed = ""; var age = []; var size = []; var gender = []; var dist = []; var character = []; var house = []; 
+var animal = ""; var aniType = ""; var zipCode = ""; var breed = ""; var age = ""; var size = ""; var gender = ""; var dist = ""; var character = ""; var house = ""; 
 
 $(document).ready(function() {
 
@@ -19,15 +19,19 @@ $(document).ready(function() {
         $("#hider").show(800, "swing");
     });
 
-    $("#resetBtn").click(function(event){
-        event.preventDefault();
+    function resetAll() {
         //reset global variables and animal type
-        animal = ""; zipCode = ""; breed = ""; age = []; size = []; gender = []; dist = []; character = []; house = []; 
+        animal = ""; zipCode = ""; breed = ""; age = ""; size = ""; gender = ""; dist = ""; character = ""; house = ""; 
         $("#aniType").val("");
         //re-show all Adv Btns
         $(".btnMatch").show();
         //reset Keep track
         $("#keepTrack").html("<p id='keepTrack'>Keep track:</p>");
+    };
+
+    $("#resetBtn").click(function(event) {
+        event.preventDefault();
+        resetAll();
     });
 
     //Build the arrays for each individual advanced feature:
@@ -39,51 +43,51 @@ $(document).ready(function() {
         //set keep track of what you clicked    
 
         $(".ageInput").click(function() {
-            var val = $(this).html().trim();
-            age.push(val);
-            console.log("age: " + age);
-            $(this).hide();
-            $("#keepTrack").append(" " + val + "-").removeClass("hidden");
+            age = $(this).html().trim();
+            //age.push(val);
+            //console.log("age: " + age);
+            $(".ageInput").hide();
+            $("#keepTrack").append(" " + age + "-").removeClass("hidden");
         });
 
         $(".szInput").click(function() {
-            var val = $(this).attr("data");
-            size.push(val);
-            console.log("size: " + size);
-            $(this).hide();
-            $("#keepTrack").append(" " + val + "-").removeClass("hidden");
+            size = $(this).attr("data");
+            //size.push(val);
+            //console.log("size: " + size);
+            $(".szInput").hide();
+            $("#keepTrack").append(" " + size + "-").removeClass("hidden");
         });
 
         $(".genInput").click(function() {
-            var val = $(this).attr("data");
-            gender.push(val);
-            console.log("gender: " + gender);
-            $(this).hide();
-            $("#keepTrack").append(" " + val + "-").removeClass("hidden");
+            gender = $(this).attr("data");
+            //gender.push(val);
+            //console.log("gender: " + gender);
+            $(".genInput").hide();
+            $("#keepTrack").append(" " + gender + "-").removeClass("hidden");
         });
 
         $(".distInput").click(function() {
-            var val = $(this).html().trim();
-            dist.push(val);
-            console.log("distance: " + dist);
-            $(this).hide();
-            $("#keepTrack").append(" " + val + "-").removeClass("hidden");
+            dist = $(this).html().trim();
+            //dist.push(val);
+            //console.log("distance: " + dist);
+            $(".distInput").hide();
+            $("#keepTrack").append(" " + dist + "-").removeClass("hidden");
         });
 
         $(".chrInput").click(function() {
-            var val = $(this).html().trim();
-            character.push(val);
-            console.log("characteristics: " + character);
-            $(this).hide();
-            $("#keepTrack").append(" " + val + "-").removeClass("hidden");
+            character = $(this).html().trim();
+            //character.push(val);
+            //console.log("characteristics: " + character);
+            $(".chrInput").hide();
+            $("#keepTrack").append(" " + character + "-").removeClass("hidden");
         });
 
         $(".houseInput").click(function() {
-            var val = $(this).html().trim();
-            house.push(val);
-            console.log("house has: " + house);
-            $(this).hide();
-            $("#keepTrack").append(" " + val + "-").removeClass("hidden");
+            house = $(this).html().trim();
+            //house.push(val);
+            //console.log("house has: " + house);
+            $(".houseInput").hide();
+            $("#keepTrack").append(" " + house + "-").removeClass("hidden");
         });
 
     //Dropdown getter
@@ -111,8 +115,21 @@ $(document).ready(function() {
             console.log("breed: " + breed);
 
             databasePie(animal);
+
+            resetAll();
         });
 
+        function databasePie(){
+            //use this for entering the animal type into the DB with a counter
+        };
+
+        function callPie(){
+            //use this to pull the DB and populate the piechart
+        };
+
+        function amazon(){
+            //make a carosel, based on animal type? or just a randome pet carousel?
+        }
 });
 // not in the document.ready!
 //petfinder API function
