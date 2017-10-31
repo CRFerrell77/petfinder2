@@ -4,6 +4,8 @@
 // });
 
 var animal = ""; var aniType = ""; var zipCode = ""; var breed = ""; var age = ""; var size = ""; var gender = ""; var dist = ""; var character = ""; var house = ""; 
+ var dogCounter = 0; var catCounter = 0; var horseCounter = 0; var smallfurryCounter = 0; var scalesCounter = 0; var barnyardCounter = 0; var birdCounter = 0;
+
 
 
 $(document).ready(function() {
@@ -28,7 +30,6 @@ $(document).ready(function() {
 
     var database = firebase.database();
 
-    var dogCounter = 0; var catCounter = 0; var horseCounter = 0; var smallfurryCounter = 0; var scalesCounter = 0; var barnyardCounter = 0; var birdCounter = 0;
 
 
          
@@ -60,6 +61,7 @@ $(document).ready(function() {
         }
 
         database.ref().set({
+           
             dogs: dogCounter,
             cats: catCounter,
             horse: horseCounter,
@@ -67,19 +69,30 @@ $(document).ready(function() {
             scales: scalesCounter,
             barnyard: barnyardCounter,
             bird: birdCounter
+            
         });
-        database.ref().on("child_added", function(childSnapshot, prevChildKey) {
-    //up to date changes being accounted for in database
-    childSnapshot.val().dogs
-    childSnapshot.val().cats
-    childSnapshot.val().horse
-    childSnapshot.val().smallfurry
-    childSnapshot.val().scales
-    childSnapshot.val().barnyard
-    childSnapshot.val().bird
+    }
+       
+       database.ref().on("value", function(snapshot) {
 
-        callPie();
-    };
+      
+ 
+      dogCounter = snapshot.val().dogs;
+      catsCounter = snapshot.val().cats;
+      horseCounter = snapshot.val().horse;
+      smallfurryCounter = snapshot.val().smallfurry;
+      scalesCounter = snapshot.val().scales;
+      barnyardCounter = snapshot.val().barnyard;
+      birdCounter = snapshot.val().bird;
+
+
+
+    }, function(errorObject) {
+
+    
+      console.log("The read failed: " + errorObject.code);
+    });
+    
     
     //advanced, ver 2.0
     $('#searchBoxAdv').click(function () {
