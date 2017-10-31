@@ -34,19 +34,26 @@ $(document).ready(function() {
          
     function databasePie(value){ //use this for entering the animal type into the DB with a counter
         
-        if (value = "dog") {
+        if (value === "dog") {
+            console.log("database entry: " + value);
             dogCounter++;
-        }else if (value = "cat") {
+        }else if (value === "cat") {
+            console.log("database entry: " + value);
             catCounter++;
-        }else if (value = "horse") {
+        }else if (value === "horse") {
+            console.log("database entry: " + value);
             horseCounter++;
-        }else if (value = "smallfurry") {
+        }else if (value === "smallfurry") {
+            console.log("database entry: " + value);
             smallfurryCounter++;
-        }else if (value = "reptile") {
+        }else if (value === "reptile") {
+            console.log("database entry: " + value);
             scalesCounter++;
-        }else if (value = "barnyard") {
+        }else if (value === "barnyard") {
+            console.log("database entry: " + value);
             barnyardCounter++;
-        }else if (value = "bird") {
+        }else if (value === "bird") {
+            console.log("database entry: " + value);
             birdCounter++;
         }else {
             console.log("no animal chosen");
@@ -61,6 +68,8 @@ $(document).ready(function() {
             barnyard: barnyardCounter,
             bird: birdCounter
         });
+
+        callPie();
     };
     
     //advanced, ver 2.0
@@ -171,6 +180,8 @@ $(document).ready(function() {
 
         function callPie(){
             //use this to pull the DB and populate the piechart
+
+
         };
 
         function amazon(){
