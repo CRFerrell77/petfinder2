@@ -38,10 +38,10 @@ $(document).ready(function() {
         }else if (value = "cat") {
             catCounter++;
         }else if (value = "horse") {
-            horsCounter++;
-        }else if (value = "small-furry") {
+            horseCounter++;
+        }else if (value = "smallfurry") {
             smallfurryCounter++;
-        }else if (value = "scales") {
+        }else if (value = "reptile") {
             scalesCounter++;
         }else if (value = "barnyard") {
             barnyardCounter++;
