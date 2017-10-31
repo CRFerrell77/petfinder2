@@ -180,7 +180,24 @@ $(document).ready(function() {
 
         function callPie(){
             //use this to pull the DB and populate the piechart
-
+        var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "Most Popular Pets Searched"
+                },
+                data: [{
+                    type: "pie",
+                    startAngle: 240,
+                    yValueFormatString: "##0.00\"%\"",
+                    indexLabel: "{label} {y}",
+                    dataPoints: [
+                        {y: 4, label: "Dog"},
+                        {y: 2, label: "Cat"},
+                        {y: 1, label: "Horse"}
+                    ]
+                }]
+            });
+            chart.render();
 
         };
 
