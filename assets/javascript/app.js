@@ -5,21 +5,6 @@
 
 var animal = ""; var aniType = ""; var zipCode = ""; var breed = ""; var age = ""; var size = ""; var gender = ""; var dist = ""; var character = ""; var house = ""; 
 
-var config = {
-    apiKey: "AIzaSyAyQONpbGnmz5P9HxgnYJ4ZBjz6tcCx-NA",
-    authDomain: "petfinder2-2538c.firebaseapp.com",
-    databaseURL: "https://petfinder2-2538c.firebaseio.com",
-    projectId: "petfinder2-2538c",
-    storageBucket: "petfinder2-2538c.appspot.com",
-    messagingSenderId: "444753129835"
-};
-
-firebase.initializeApp(config);
-
-var database = firebase.database();
-
-var dogCounter = 0; var catCounter = 0; var horseCounter = 0; var smallfurryCounter = 0; var scalesCounter = 0; var barnyardCounter = 0; var birdCounter = 0;
-
 
 $(document).ready(function() {
 
@@ -29,6 +14,22 @@ $(document).ready(function() {
     }
 
     startHidden();
+
+    var config = {
+        apiKey: "AIzaSyAyQONpbGnmz5P9HxgnYJ4ZBjz6tcCx-NA",
+        authDomain: "petfinder2-2538c.firebaseapp.com",
+        databaseURL: "https://petfinder2-2538c.firebaseio.com",
+        projectId: "petfinder2-2538c",
+        storageBucket: "petfinder2-2538c.appspot.com",
+        messagingSenderId: "444753129835"
+    };
+
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
+
+    var dogCounter = 0; var catCounter = 0; var horseCounter = 0; var smallfurryCounter = 0; var scalesCounter = 0; var barnyardCounter = 0; var birdCounter = 0;
+
 
          
     function databasePie(value){ //use this for entering the animal type into the DB with a counter
