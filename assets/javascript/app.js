@@ -68,6 +68,15 @@ $(document).ready(function() {
             barnyard: barnyardCounter,
             bird: birdCounter
         });
+        database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+    //up to date changes being accounted for in database
+    childSnapshot.val().dogs
+    childSnapshot.val().cats
+    childSnapshot.val().horse
+    childSnapshot.val().smallfurry
+    childSnapshot.val().scales
+    childSnapshot.val().barnyard
+    childSnapshot.val().bird
 
         callPie();
     };
