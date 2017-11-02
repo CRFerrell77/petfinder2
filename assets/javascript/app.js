@@ -362,5 +362,7 @@ $(document).on("click", ".showData", function(){
 
 });
 
+};
+
  
 
