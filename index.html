@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 
 <html lang="en">
 
@@ -30,6 +30,9 @@
 
     <!-- local JS-->
     <script type="text/javascript" src="assets\javascript\app.js"></script>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 
 </head>
 
@@ -75,8 +78,10 @@
             <div id="topBox" class="row outline">
                 <div id="randPet" class="col-md-8">
                     <p>random dogs across the world</p>
+                    <div class="randomImage"></div>
                 </div>
-                <div id="pieChart" class="col-md-4">
+                <div id="chartContainer" class="col-md-4">
+                    
                     <p>most searched for pets</p>
                 </div>
             </div>
@@ -85,7 +90,7 @@
                 <h2>search box: required</h2>
                 <!-- Animal Type / Zipcode -->
 
-                <p>Kind of Animal? ('Dog', or 'Cat', etc)</p>
+                <p>Type of Animal? ('Dog', or 'Cat', etc)</p>
                 <div class="dropdown">
                     <button class="btn buttonMatch dropdown-toggle typeBtn" type="button" data-toggle="dropdown">
                         Type
@@ -103,7 +108,7 @@
                 </div>
                 <br>
 
-<!-- 
+                <!-- 
                 <div class="form-group">
                     <label for="aniType">Kind of Animal? ('Dog', or 'Cat', etc)</label>
                     <input type="text" class="form-control" id="aniType"></input>
@@ -120,7 +125,7 @@
             </div>
 
             <div id="searchBoxAdv" class="row">
-                <h3>Click here for advanced search! (select one each)</h3> <!-- we had this as multiple choice, but the API can only use one each per, so... -->
+                <h3>Click HERE for advanced search!</h3> <!-- we had this as multiple choice, but the API can only use one each per, so... -->
                 <div id="hider">
                     <!-- Age range -->
                         <!-- button version -->
@@ -271,4 +276,12 @@
 
         </div>
     </div>    
+    <div class="row">
+        <footer class="navbar-default navbar-fixed-bottom" id="foot">  
+            <div id="bar"></div>  
+            <span>&copy; Copyright 2017 team AwesomeSauce</span>        
+        </footer>
+    </div>
+   
 </body>
+</html>
