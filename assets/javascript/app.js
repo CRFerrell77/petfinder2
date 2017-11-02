@@ -77,17 +77,12 @@ $(document).ready(function() {
     database.ref().on("value", function(snapshot) {
                     
         dogCounter = snapshot.val().dogs;
-<<<<<<< HEAD
         catCounter = snapshot.val().cats;
-=======
-        catsCounter = snapshot.val().cats;
->>>>>>> ce114482a3bf74927208af2c8cce1828e6e05ca4
         horseCounter = snapshot.val().horse;
         smallfurryCounter = snapshot.val().smallfurry;
         scalesCounter = snapshot.val().scales;
         barnyardCounter = snapshot.val().barnyard;
         birdCounter = snapshot.val().bird;
-<<<<<<< HEAD
 
          var chart = new CanvasJS.Chart("chartContainer", {
     animationEnabled: true,
@@ -115,8 +110,6 @@ $(document).ready(function() {
 
 chart.render();
 
-=======
->>>>>>> ce114482a3bf74927208af2c8cce1828e6e05ca4
     }, function(errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
@@ -293,8 +286,6 @@ function randomPet(){
         $(".randomImage").append("<img src="+result.petfinder.pets.pet.media.photos.photo[2].$t+"/ >");
 
 });
-<<<<<<< HEAD
-=======
 
 // Random Animal Generator API
 
@@ -329,7 +320,6 @@ function randomPet(){
         $(".randomImage").append("<img src="+result.petfinder.pets.pet.media.photos.photo[2].$t+"/ >");
 
 });
->>>>>>> ce114482a3bf74927208af2c8cce1828e6e05ca4
 }
 
 
@@ -369,4 +359,8 @@ $(document).on("click", ".showData", function(){
         $("#a"+$(this).attr("id")).hide();
         $("#a"+$(this).attr("id")).attr('data', "hidden");
     }
+
 });
+
+ 
+
