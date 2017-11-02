@@ -53,30 +53,24 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#" id="name">PetFinder 2.0</a>
+                        <a class="navbar-brand" href="#" id="name">New Best Friend!</a>
                         
                     </div>
-                    
+                <!-- nav bar stuff -->                    
                     <div id="navbar" class="navbar-collapse collapse"> 
-                        
                         <ul class="nav navbar-nav navbar-right"> 
-                            
                             <li>
                                 <a href="index.html">Home</a>
                             </li>
                             <li>
                                 <a href="contact.html">Contact</a>
                             </li>
-                            
                         </ul>
-                        
                     </div>
-
-                </div>
-                    
+            </div>
             </nav>
 
-            <!-- This area for logo -->
+        <!-- This area for logo -->
             <div class="row"> 
                     <img src="assets\images\newBFF.png" alt="new b f f logo" style="width:100%;">
             </div>
@@ -86,13 +80,9 @@
                     <p>random pets across the US</p>
                     <div class="randomImage"></div>
                 </div>
-                <!-- moved to the bottom for better visuals:
-                <div id="chartContainer" class="col-md-4">
-                    <p>most searched for pets</p>
-                </div>
-                -->
             </div>
 
+        <!-- basic search hterms -->
             <div id="searchBoxReq" class="row">
                 <h2>search for your new best friend:</h2>
                 <!-- Animal Type / Zipcode -->
@@ -115,12 +105,6 @@
                 </div>
                 <br>
 
-                <!-- 
-                <div class="form-group">
-                    <label for="aniType">Kind of Animal? ('Dog', or 'Cat', etc)</label>
-                    <input type="text" class="form-control" id="aniType"></input>
-                </div> -->
-
                 <div class="form-group">
                     <label for="zipCode">Find pets nearby which Zip Code? (example: 60640)</label>
                     <input type="text" class="form-control" id="zipCode"></input>
@@ -130,7 +114,8 @@
                     <input type="text" class="form-control" id="aniBreed"></input>
                 </div>
             </div>
-
+        
+        <!-- advanced search features -->
             <div id="searchBoxAdv" class="row">
                 <h3>Click HERE for advanced search!</h3> <!-- we had this as multiple choice, but the API can only use one each per, so... -->
                 <div id="hider">
@@ -237,11 +222,11 @@
             <br> 
 
             <!-- This area to return results -->
-            <div id="results" class="row hidden">
-                <p>results</p>
-                <table id="results">
-                </table>
-            </div>
+                <div id="results" class="row hidden">
+                    <p>results</p>
+                    <table id="results">
+                    </table>
+                </div>
 
             <!-- breathing room -->
             <br>
@@ -249,9 +234,7 @@
 
             <!-- This area for adverts and misc -->
                 <div id="miscBox" class="row"> 
-                    <!--
-                    <div class="col-md-4"></div>
-                    -->
+
                     <div class="col-md-8"> <!-- moved pie chart to the bottom of the page to see what's what -->
                         <h2>Got Pie(chart)?</h2>
                         <div id="chartContainer" ></div>
@@ -304,12 +287,12 @@
     <br> 
     
     <!-- footer -->
-    <div class="row">
-        <footer class="navbar-default navbar-fixed-bottom" id="foot">  
-            <div id="bar"></div>  
-            <span>&copy; Copyright 2017 team AwesomeSauce</span>        
-        </footer>
-    </div>
+        <div class="row">
+            <footer class="navbar-default navbar-fixed-bottom" id="foot">  
+                <div id="bar"></div>  
+                <span>&copy; Copyright 2017 team AwesomeSauce</span>        
+            </footer>
+        </div>
    
 </body>
 </html>

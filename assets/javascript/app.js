@@ -35,7 +35,7 @@ $(document).ready(function() {
 
          
     function databasePie(value){ //use this for entering the animal type into the DB with a counter
-        
+        // counter++ functionality
         if (value === "dog") {
             console.log("database entry: " + value);
             dogCounter++;
@@ -61,8 +61,8 @@ $(document).ready(function() {
             console.log("no animal chosen");
         }
 
+        //add counter to the DB
         database.ref().set({
-           
             dogs: dogCounter,
             cats: catCounter,
             horse: horseCounter,
@@ -73,9 +73,9 @@ $(document).ready(function() {
             
         });
     };
-       
+
+    //pull the DB values   
     database.ref().on("value", function(snapshot) {
-                    
         dogCounter = snapshot.val().dogs;
         catCounter = snapshot.val().cats;
         horseCounter = snapshot.val().horse;
@@ -84,36 +84,36 @@ $(document).ready(function() {
         barnyardCounter = snapshot.val().barnyard;
         birdCounter = snapshot.val().bird;
 
-         var chart = new CanvasJS.Chart("chartContainer", {
-    animationEnabled: true,
-    title: {
-        text: "Most Popular Pets Searched"
-    },
-    data: [{
-        type: "pie",
-        startAngle: 240,
-        yValueFormatString: "##0.00\"%\"",
-        indexLabel: "{label} {y}",
-        dataPoints: [
-            {y: dogCounter, label: "Dog"},
-            {y: catCounter, label: "Cat"},
-            {y: horseCounter, label: "Horses"},
-            {y: smallfurryCounter, label: "Small and Furry"},
-            {y: scalesCounter, label: "Reptiles"},
-            {y: birdCounter, label: "Birds"},
-            {y: barnyardCounter, label: "Barnyard"}
-            
-        ]
-    }]
+        //using chartjs, populate the pie chart with DB info
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+                text: "Most Popular Pets Searched"
+            },
+            data: [{
+                type: "pie",
+                startAngle: 240,
+                yValueFormatString: "##0.00\"%\"",
+                indexLabel: "{label} {y}",
+                dataPoints: [
+                    {y: dogCounter, label: "Dog"},
+                    {y: catCounter, label: "Cat"},
+                    {y: horseCounter, label: "Horses"},
+                    {y: smallfurryCounter, label: "Small and Furry"},
+                    {y: scalesCounter, label: "Reptiles"},
+                    {y: birdCounter, label: "Birds"},
+                    {y: barnyardCounter, label: "Barnyard"}
+                    
+                ]
+            }]
 
-});
+        });
 
-chart.render();
+        chart.render();
 
     }, function(errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
-    
     
     //advanced items seaercher, ver 2.0
     $('#searchBoxAdv').click(function () {
