@@ -72,30 +72,23 @@ $(document).ready(function() {
             bird: birdCounter
             
         });
-    }
+    };
        
-       database.ref().on("value", function(snapshot) {
-
-      
- 
-      dogCounter = snapshot.val().dogs;
-      catsCounter = snapshot.val().cats;
-      horseCounter = snapshot.val().horse;
-      smallfurryCounter = snapshot.val().smallfurry;
-      scalesCounter = snapshot.val().scales;
-      barnyardCounter = snapshot.val().barnyard;
-      birdCounter = snapshot.val().bird;
-
-
-
+    database.ref().on("value", function(snapshot) {
+                    
+        dogCounter = snapshot.val().dogs;
+        catsCounter = snapshot.val().cats;
+        horseCounter = snapshot.val().horse;
+        smallfurryCounter = snapshot.val().smallfurry;
+        scalesCounter = snapshot.val().scales;
+        barnyardCounter = snapshot.val().barnyard;
+        birdCounter = snapshot.val().bird;
     }, function(errorObject) {
-
-    
-      console.log("The read failed: " + errorObject.code);
+        console.log("The read failed: " + errorObject.code);
     });
     
     
-    //advanced, ver 2.0
+    //advanced items seaercher, ver 2.0
     $('#searchBoxAdv').click(function () {
         $("#hider").show(800, "swing");
     });

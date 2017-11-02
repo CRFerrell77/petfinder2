@@ -4,15 +4,6 @@ body {
     background-color: #998F83;
 }
 
-.outline {
-    /*border: 1px solid green;
-    margin: 10px;*/
-}
-
-.advInput {
-    border:0px solid transparent; /* this was 1px earlier */
-}
-
 .center{
     text-align: center;
 }
@@ -52,3 +43,21 @@ table{
     display: none; 
 }
 
+#foot {
+    color: #d3d3d3 ;
+    background-image: unset;
+    height: 75px;
+    background-color: #666666 ;
+    text-align: center;
+}
+
+#bar {
+    background-color: lightseagreen ;
+    height: 5px;
+    margin-bottom: 20px;
+}
+
+#disclaimer {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
