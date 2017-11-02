@@ -77,12 +77,17 @@ $(document).ready(function() {
     database.ref().on("value", function(snapshot) {
                     
         dogCounter = snapshot.val().dogs;
+<<<<<<< HEAD
         catCounter = snapshot.val().cats;
+=======
+        catsCounter = snapshot.val().cats;
+>>>>>>> ce114482a3bf74927208af2c8cce1828e6e05ca4
         horseCounter = snapshot.val().horse;
         smallfurryCounter = snapshot.val().smallfurry;
         scalesCounter = snapshot.val().scales;
         barnyardCounter = snapshot.val().barnyard;
         birdCounter = snapshot.val().bird;
+<<<<<<< HEAD
 
          var chart = new CanvasJS.Chart("chartContainer", {
     animationEnabled: true,
@@ -110,6 +115,8 @@ $(document).ready(function() {
 
 chart.render();
 
+=======
+>>>>>>> ce114482a3bf74927208af2c8cce1828e6e05ca4
     }, function(errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
@@ -286,6 +293,43 @@ function randomPet(){
         $(".randomImage").append("<img src="+result.petfinder.pets.pet.media.photos.photo[2].$t+"/ >");
 
 });
+<<<<<<< HEAD
+=======
+
+// Random Animal Generator API
+
+
+function randomPet(){
+
+    var randomAnimalArray = ["dog","cat","horse","bird","barnyard"];
+    randomSearch = randomAnimalArray[Math.floor(Math.random() * (5 - 0)) + 0]; 
+    console.log(randomSearch);
+    var randomZipArray = [61704,53072,11724,11725,11726,11727,11729,11730,11731,11732,
+                          11733,11735,11737,11738,11739,11740,11741,11742,11743,11746,
+                          11747,11749,11751,11752,11753,11755,11756,11757,11758,11760,
+                          11762,11763,11764,11765,11766,11767,11768,11769,11770,11771,
+                          11772,11773,11775,11776,11777,33428,33429,33430,33431,33432,
+                          33433,33434,33435,33436,33437,33576,33578,33579,33583,33584,
+                          33585,33731,33732,33733,33734,33736,33737,33738,35013,35014,
+                          35015,35016,35019,35020,35021,35022,35023,35212,35213,35214,
+                          35215,35216,35217,35218,35219,35220,35221,40588,40591,40598,
+                          40601,40602,40603,40604,40618,40619,41074,41075,41076,41080];
+    var randomZip = randomZipArray[Math.floor(Math.random() * (100 - 0)) + 0];
+    console.log(randomZip);
+  
+
+    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+randomSearch+"&location="+randomZip+"&count=1";
+    $.ajax({
+    url: url,
+    dataType: 'jsonp',
+    method: 'GET',
+    }).done(function(result) {
+        console.log(result);
+
+        $(".randomImage").append("<img src="+result.petfinder.pets.pet.media.photos.photo[2].$t+"/ >");
+
+});
+>>>>>>> ce114482a3bf74927208af2c8cce1828e6e05ca4
 }
 
 

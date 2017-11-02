@@ -43,12 +43,15 @@ table{
     display: none; 
 }
 
+<<<<<<< HEAD
 #chartContainer {
     font-family: 'Baloo Tamma', cursive;
     height: 270px; 
     width: 50%;
 }
 
+=======
+>>>>>>> ce114482a3bf74927208af2c8cce1828e6e05ca4
 #foot {
     color: #d3d3d3 ;
     background-image: unset;
