@@ -219,43 +219,9 @@ chart.render();
 
             resetAll();
         });
-           
-
-      /*  function callPie(){
-            //use this to pull the DB and populate the piechart
-        var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                title: {
-                    text: "Most Popular Pets Searched"
-                },
-                data: [{
-                    type: "pie",
-                    startAngle: 240,
-                    yValueFormatString: "##0.00\"%\"",
-                    indexLabel: "{label} {y}",
-                    dataPoints: [
-                        {y: dogCounter, label: "Dogs"},
-                        {y: catCounter, label: "Cats"},
-                        {y: horseCounter, label: "Horses"},
-                        {y: smallfurryCounter, label: "Small and Furry"},
-                        {y: scalesCounter, label: "Reptiles"},
-                        {y: birdCounter, label: "Birds"},
-                        {y: barnyardCounter, label: "Barnyard"}
-                        
-                    ]
-                }]
-
-            });
-            chart.render();
-
-        };
- callPie();
-*/
 });
 
 // Random Animal Generator API
-
-
 function randomPet(){
 
     var randomAnimalArray = ["dog","cat","horse","bird","barnyard"];
