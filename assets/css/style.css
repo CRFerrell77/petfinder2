@@ -41,12 +41,17 @@ img{
     margin: 5px;
 }
 
-table{
-    border-collapse: separate;
-    border-spacing: 10px;
+#results{
+    display: block;
 }
 
 .hideData{
-    display: none; 
+    display: block;
+    display: none;
+}
+
+#map{
+    height: 300px;
+    width: 100%;
 }
 

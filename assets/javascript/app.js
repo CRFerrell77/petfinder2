@@ -101,6 +101,8 @@ $(document).ready(function() {
         $("#searchBtn").click(function(event){
             event.preventDefault();
 
+            $("table").html("");
+
             $("#results").removeClass("hidden");
 
             animal = aniType;
@@ -110,42 +112,55 @@ $(document).ready(function() {
             breed = $("#aniBreed").val().trim();
             console.log("breed: " + breed);
 
-            databasePie(animal);
+            //databasePie(animal);
+
+            callPets(animal, zipCode, breed, age[0]);
         });
 
-});
-// not in the document.ready!
-//petfinder API function
-function callPets(animal, location){
-    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location+"&count=10";
-    $.ajax({
-    url: url,
-    dataType: 'jsonp',
-    method: 'GET',
-    }).done(function(result) {
 
-        for(var i = 0; i < result.petfinder.pets.pet.length; i++){
-            $("table").append("<tr class='showData' id='"+i+"'><td colspan=2><img src='"+result.petfinder.pets.pet[i].media.photos.photo[2].$t+"'/ ></td><td>"+result.petfinder.pets.pet[i].name.$t+"</td></tr><tr class='hideData' data='hidden' id='a"+i+"'><td>"+result.petfinder.pets.pet[i].description.$t+"</td></tr>");
+    //petfinder API function
+    function callPets(animal, location, breed, age){
+        var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location+"&breed="+breed+"&count=10";
+        $.ajax({
+        url: url,
+        dataType: 'jsonp',
+        method: 'GET',
+        }).done(function(result) {
 
-            if(result.petfinder.pets.pet[i].breeds.breed[1] === undefined){
-                 $("#"+i).append("<td>"+result.petfinder.pets.pet[i].breeds.breed.$t+"</td></tr>");
-            }
-            else{
-                 $("#"+i).append("<td>"+result.petfinder.pets.pet[i].breeds.breed[0].$t+" & "+result.petfinder.pets.pet[i].breeds.breed[1].$t+"</td>");
-            }
+            for(var i = 0; i < result.petfinder.pets.pet.length; i++){
+                    var tempBreed;
+                if(result.petfinder.pets.pet[i].breeds.breed[1] === undefined){
+                    tempBreed = result.petfinder.pets.pet[i].breeds.breed.$t;
+                    //$("#"+i).append(result.petfinder.pets.pet[i].breeds.breed.$t);
+                }
+                else{
+                    tempBreed = result.petfinder.pets.pet[i].breeds.breed[0].$t+" & "+result.petfinder.pets.pet[i].breeds.breed[1].$t;
+                    //$("#"+i).append(result.petfinder.pets.pet[i].breeds.breed[0].$t+" & "+result.petfinder.pets.pet[i].breeds.breed[1].$t);
+                }
+
+                $("#resultsTable").append("<div class='showData row' id='"+i+"'><div class='col-md-4'><img src='"+result.petfinder.pets.pet[i].media.photos.photo[2].$t+"'/ ></div><div class='col-md-4'>"+result.petfinder.pets.pet[i].name.$t+"</div><div class='col-md-4'>"+tempBreed+"</div></div><div class='hideData row' data='hidden' id='a"+i+"'><div class='col-md-6'>"+result.petfinder.pets.pet[i].description.$t+"</div><div class='col-md-6'><div class='row' id='map'></div></div>");
+            }            
+        });
+    };
+
+    var map;
+    function initMap(latitude, longitude) {
+                map = new google.maps.Map(document.getElementById("map"), {
+                center: {lat: latitude, lng: longitude},
+                zoom: 8
+                });
+            };
+
+    $(document).on("click", ".showData", function(){
+         $(".hideData").hide();
+        if($("#a"+$(this).attr("id")).attr('data') === "hidden"){
+            $("#a"+$(this).attr("id")).show();
+            $("#a"+$(this).attr("id")).attr('data', "showing");
+            
+            initMap(41.881832,-87.623177);
+        } else{
+            $("#a"+$(this).attr("id")).hide();
+            $("#a"+$(this).attr("id")).attr('data', "hidden");
         }
-
     });
-};
-
-callPets("dog", 60640);
-
-$(document).on("click", ".showData", function(){
-    if($("#a"+$(this).attr("id")).attr('data') === "hidden"){
-        $("#a"+$(this).attr("id")).show();
-        $("#a"+$(this).attr("id")).attr('data', "showing");
-    } else{
-        $("#a"+$(this).attr("id")).hide();
-        $("#a"+$(this).attr("id")).attr('data', "hidden");
-    }
 });

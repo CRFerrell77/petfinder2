@@ -25,6 +25,9 @@
     <!-- bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!--google maps-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1DSG_DLC9qZnfWNaQU3El7_MoXXCfaYg &callback=initMap" async defer></script>
+
     <!-- local JS-->
     <script type="text/javascript" src="assets\javascript\app.js"></script>
 
@@ -220,10 +223,11 @@
             <!-- This area to return results -->
             <div id="results" class="row hidden">
                 <p>results</p>
-                <table id="results">
-                </table>
+                <div class="row">
+                    <div class="col-md-12" id="resultsTable">
+                    </div>
+                </div>
             </div>
-
             <!-- This area for adverts and "how to pet" -->
             <div id="miscBox" class="row">
                 <p>Misc</p>
