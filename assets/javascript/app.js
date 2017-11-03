@@ -93,7 +93,7 @@ $(document).ready(function() {
             data: [{
                 type: "pie",
                 startAngle: 240,
-                yValueFormatString: "##0.00\"%\"",
+                yValueFormatString: "##",
                 indexLabel: "{label} {y}",
                 dataPoints: [
                     {y: dogCounter, label: "Dog"},
