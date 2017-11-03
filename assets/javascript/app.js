@@ -6,8 +6,6 @@
 var animal = ""; var aniType = ""; var zipCode = ""; var breed = ""; var age = ""; var size = ""; var gender = ""; var dist = ""; var character = ""; var house = ""; 
  var dogCounter = 0; var catCounter = 0; var horseCounter = 0; var smallfurryCounter = 0; var scalesCounter = 0; var barnyardCounter = 0; var birdCounter = 0;
 
-
-
 $(document).ready(function() {
 
 
@@ -227,6 +225,7 @@ $(document).ready(function() {
 
 function randomPet(){
 
+    
     var randomAnimalArray = ["dog","cat","horse","bird","barnyard"];
     randomSearch = randomAnimalArray[Math.floor(Math.random() * (5 - 0)) + 0]; 
     console.log(randomSearch);
@@ -241,18 +240,21 @@ function randomPet(){
                           35215,35216,35217,35218,35219,35220,35221,40588,40591,40598,
                           40601,40602,40603,40604,40618,40619,41074,41075,41076,41080];
     var randomZip = randomZipArray[Math.floor(Math.random() * (100 - 0)) + 0];
+    
+    
     console.log(randomZip);
-  
 
-    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+randomSearch+"&location="+randomZip+"&count=1";
+    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+randomSearch+"&location="+randomZip+"&count=5";
     $.ajax({
     url: url,
     dataType: 'jsonp',
     method: 'GET',
     }).done(function(result) {
-        console.log(result);
-
-        $(".randomImage").append("<img src="+result.petfinder.pets.pet.media.photos.photo[2].$t+"/ >");
+        
+        
+        $(".randomImage").append('<tr><td>'+"<img src="+result.petfinder.pets.pet[0].media.photos.photo[1].$t+"/ >"+
+            '</td><td>'+ result.petfinder.pets.pet[0].name.$t+'</td><td>'+"<img src="+result.petfinder.pets.pet[1].media.photos.photo[1].$t+"/ >"+
+            '</td><td>'+ result.petfinder.pets.pet[1].name.$t+'</td></tr>');
 
 });
 }
@@ -267,10 +269,18 @@ function callPets(animal, location){
     dataType: 'jsonp',
     method: 'GET',
     }).done(function(result) {
-       // console.log(result);    
+           //console.log(result);
 
         for(var i = 0; i < result.petfinder.pets.pet.length; i++){
             $("table").append("<tr class='showData' id='"+i+"'><td colspan=2><img src='"+result.petfinder.pets.pet[i].media.photos.photo[2].$t+"'/ ></td><td>"+result.petfinder.pets.pet[i].name.$t+"</td></tr><tr class='hideData' data='hidden' id='a"+i+"'><td>"+result.petfinder.pets.pet[i].description.$t+"</td></tr>");
+            
+            // Getting the shelterId captured in an array
+            // If shelterId is not there in API data then store Null in the array
+            if(result.petfinder.pets.pet[i].shelterId === undefined)
+                shelterAddress = null;
+            else{
+                console.log(result.petfinder.pets.pet[i].shelterId.$t);
+            }
 
             if(result.petfinder.pets.pet[i].breeds.breed[1] === undefined){
                  $("#"+i).append("<td>"+result.petfinder.pets.pet[i].breeds.breed.$t+"</td></tr>");
