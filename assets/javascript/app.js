@@ -33,7 +33,7 @@ $(document).ready(function() {
 
          
     function databasePie(value){ //use this for entering the animal type into the DB with a counter
-        
+        // counter++ functionality
         if (value === "dog") {
             console.log("database entry: " + value);
             dogCounter++;
@@ -59,8 +59,8 @@ $(document).ready(function() {
             console.log("no animal chosen");
         }
 
+        //add counter to the DB
         database.ref().set({
-           
             dogs: dogCounter,
             cats: catCounter,
             horse: horseCounter,
@@ -71,20 +71,47 @@ $(document).ready(function() {
             
         });
     };
-       
+
+    //pull the DB values   
     database.ref().on("value", function(snapshot) {
-                    
         dogCounter = snapshot.val().dogs;
-        catsCounter = snapshot.val().cats;
+        catCounter = snapshot.val().cats;
         horseCounter = snapshot.val().horse;
         smallfurryCounter = snapshot.val().smallfurry;
         scalesCounter = snapshot.val().scales;
         barnyardCounter = snapshot.val().barnyard;
         birdCounter = snapshot.val().bird;
+
+        //using chartjs, populate the pie chart with DB info
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+                text: "Most Popular Pets Searched"
+            },
+            data: [{
+                type: "pie",
+                startAngle: 240,
+                yValueFormatString: "##",
+                indexLabel: "{label} {y}",
+                dataPoints: [
+                    {y: dogCounter, label: "Dog"},
+                    {y: catCounter, label: "Cat"},
+                    {y: horseCounter, label: "Horses"},
+                    {y: smallfurryCounter, label: "Small and Furry"},
+                    {y: scalesCounter, label: "Reptiles"},
+                    {y: birdCounter, label: "Birds"},
+                    {y: barnyardCounter, label: "Barnyard"}
+                    
+                ]
+            }]
+
+        });
+
+        chart.render();
+
     }, function(errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
-    
     
     //advanced items seaercher, ver 2.0
     $('#searchBoxAdv').click(function () {
@@ -190,45 +217,20 @@ $(document).ready(function() {
 
             resetAll();
         });
-           
-
-        function callPie(){
-            //use this to pull the DB and populate the piechart
-        var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                title: {
-                    text: "Most Popular Pets Searched"
-                },
-                data: [{
-                    type: "pie",
-                    startAngle: 240,
-                    yValueFormatString: "##0.00\"%\"",
-                    indexLabel: "{label} {y}",
-                    dataPoints: [
-                        {y: 4, label: "Dog"},
-                        {y: 2, label: "Cat"},
-                        {y: 1, label: "Horse"}
-                    ]
-                }]
-            });
-            chart.render();
-
-        };
-
-        function amazon(){
-            //make a carosel, based on animal type? or just a randome pet carousel?
-        }
 });
 
 // Random Animal Generator API
-
-
 function randomPet(){
 
-    
+    // Array for choosing random animal for displaying random animal 
+    // from a random location within US
     var randomAnimalArray = ["dog","cat","horse","bird","barnyard"];
+
+    // variable for storing the random randomly selected animal from the array
     randomSearch = randomAnimalArray[Math.floor(Math.random() * (5 - 0)) + 0]; 
-    console.log(randomSearch);
+    
+    // Array to store the random Zip codes of 100 places within US. Since random select API
+    // did not work we had to hard code these
     var randomZipArray = [61704,53072,11724,11725,11726,11727,11729,11730,11731,11732,
                           11733,11735,11737,11738,11739,11740,11741,11742,11743,11746,
                           11747,11749,11751,11752,11753,11755,11756,11757,11758,11760,
@@ -239,19 +241,22 @@ function randomPet(){
                           35015,35016,35019,35020,35021,35022,35023,35212,35213,35214,
                           35215,35216,35217,35218,35219,35220,35221,40588,40591,40598,
                           40601,40602,40603,40604,40618,40619,41074,41075,41076,41080];
+    
+    // Storing randomly selected zip onto the variable
     var randomZip = randomZipArray[Math.floor(Math.random() * (100 - 0)) + 0];
     
-    
-    console.log(randomZip);
 
+    // Passing the variables into the url for API call
     var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+randomSearch+"&location="+randomZip+"&count=5";
+    
+    // API call to get the data to show the random animal picture
     $.ajax({
     url: url,
     dataType: 'jsonp',
     method: 'GET',
     }).done(function(result) {
         
-        
+        // Rendering the images of two randomly selected animals 
         $(".randomImage").append('<tr><td>'+"<img src="+result.petfinder.pets.pet[0].media.photos.photo[1].$t+"/ >"+
             '</td><td>'+ result.petfinder.pets.pet[0].name.$t+'</td><td>'+"<img src="+result.petfinder.pets.pet[1].media.photos.photo[1].$t+"/ >"+
             '</td><td>'+ result.petfinder.pets.pet[1].name.$t+'</td></tr>');
@@ -304,4 +309,10 @@ $(document).on("click", ".showData", function(){
         $("#a"+$(this).attr("id")).hide();
         $("#a"+$(this).attr("id")).attr('data', "hidden");
     }
+
 });
+
+
+
+ 
+
