@@ -1,14 +1,7 @@
 body {
     font-family: 'Baloo Tamma', cursive;
-}
-
-.outline {
-    border: 1px solid green;
-    margin: 10px;
-}
-
-.advInput {
-    border:0px solid transparent; /* this was 1px earlier */
+    font-size: 15px;
+    background-color: #998F83;
 }
 
 .center{
@@ -37,7 +30,7 @@ body {
 }
 
 img{
-    width: 100px;
+    width: 200px;
     margin: 5px;
 }
 
@@ -55,3 +48,27 @@ img{
     width: 100%;
 }
 
+#chartContainer {
+    font-family: 'Baloo Tamma', cursive;
+    height: 270px; 
+    width: 50%;
+}
+
+#foot {
+    color: #d3d3d3 ;
+    background-image: unset;
+    height: 75px;
+    background-color: #666666 ;
+    text-align: center;
+}
+
+#bar {
+    background-color: lightseagreen ;
+    height: 5px;
+    margin-bottom: 20px;
+}
+
+#disclaimer {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
