@@ -233,12 +233,13 @@ function randomPet(){
         
         
         // Rendering the images of two randomly selected animals 
-        $(".randomImage").append('<tr><td>'+"<img src="+result.petfinder.pet.media.photos.photo[1].$t+"/>"+
-            '</td><td>'+result.petfinder.pet.name.$t+
-            '</td><td>'+result.petfinder.pet.age.$t+
-            '</td><td>'+result.petfinder.pet.animal.$t+
-            '</td><td> from '+result.petfinder.pet.contact.city.$t+
-            '</td><td>, '+result.petfinder.pet.contact.state.$t+'</td></tr>');
+        $(".randomImage").append('<tr><td>'+"<img src="+result.petfinder.pet.media.photos.photo[1].$t+"/>"+'</td><td>'+result.petfinder.pet.name.$t+'</td><td> - from '+result.petfinder.pet.contact.city.$t+',</td><td>'+result.petfinder.pet.contact.state.$t+'</td></tr>');
+            
+            
+            //<td>'+result.petfinder.pet.age.$t+
+            //</td><td>'+result.petfinder.pet.animal.$t+
+            
+            
 
 });
 }
