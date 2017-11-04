@@ -248,7 +248,7 @@ function randomPet(){
 function shelterFind(id, number){
     var longitude = "";
     var latitude = "";
-    var url = "http://api.petfinder.com/shelter.get?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&id="+id;
+    var url = "https://api.petfinder.com/shelter.get?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&id="+id;
     $.ajax({
     url: url,
     dataType: 'jsonp',
@@ -283,7 +283,7 @@ function shelterFind(id, number){
 
 //petfinder API function
 function callPets(animal, location, breed){
-    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location+"&breed="+breed+"&size="+size+"&sex="+gender+"&age="+age+"&count=10";
+    var url = "https://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location+"&breed="+breed+"&size="+size+"&sex="+gender+"&age="+age+"&count=10";
     $.ajax({
     url: url,
     dataType: 'jsonp',
