@@ -6,8 +6,12 @@
 var animal = ""; var aniType = ""; var zipCode = ""; var breed = ""; var age = ""; var size = ""; var gender = ""; var dist = ""; var character = ""; var house = ""; 
  var dogCounter = 0; var catCounter = 0; var horseCounter = 0; var smallfurryCounter = 0; var scalesCounter = 0; var barnyardCounter = 0; var birdCounter = 0;
 
+var map = {};
+var googleMap;
+
 $(document).ready(function() {
 
+    setTimeout(initMap, 1000);
 
     //set the Adv Inputs to be slid up
     function startHidden() {
@@ -126,6 +130,8 @@ $(document).ready(function() {
         $(".btnMatch").show();
         //reset Keep track
         $("#keepTrack").html("<p id='keepTrack'>Keep track:</p>");
+        //reset results
+        $("#resultsTable").html("");
     };
 
     $("#resetBtn").click(function(event) {
@@ -165,30 +171,6 @@ $(document).ready(function() {
             $("#keepTrack").append(" " + gender + "-").removeClass("hidden");
         });
 
-        $(".distInput").click(function() {
-            dist = $(this).html().trim();
-            //dist.push(val);
-            //console.log("distance: " + dist);
-            $(".distInput").hide();
-            $("#keepTrack").append(" " + dist + "-").removeClass("hidden");
-        });
-
-        $(".chrInput").click(function() {
-            character = $(this).html().trim();
-            //character.push(val);
-            //console.log("characteristics: " + character);
-            $(".chrInput").hide();
-            $("#keepTrack").append(" " + character + "-").removeClass("hidden");
-        });
-
-        $(".houseInput").click(function() {
-            house = $(this).html().trim();
-            //house.push(val);
-            //console.log("house has: " + house);
-            $(".houseInput").hide();
-            $("#keepTrack").append(" " + house + "-").removeClass("hidden");
-        });
-
     //Dropdown getter
         $(".dropSel").click(function(event){
             event.preventDefault();
@@ -222,6 +204,7 @@ $(document).ready(function() {
 });
 
 // Random Animal Generator API
+// Random Animal Generator API
 function randomPet(){
 
     // Array for choosing random animal for displaying random animal 
@@ -230,45 +213,33 @@ function randomPet(){
 
     // variable for storing the random randomly selected animal from the array
     randomSearch = randomAnimalArray[Math.floor(Math.random() * (5 - 0)) + 0]; 
-    
-    // Array to store the random Zip codes of 100 places within US. Since random select API
-    // did not work we had to hard code these
-    var randomZipArray = [61704,53072,11724,11725,11726,11727,11729,11730,11731,11732,
-                          11733,11735,11737,11738,11739,11740,11741,11742,11743,11746,
-                          11747,11749,11751,11752,11753,11755,11756,11757,11758,11760,
-                          11762,11763,11764,11765,11766,11767,11768,11769,11770,11771,
-                          11772,11773,11775,11776,11777,33428,33429,33430,33431,33432,
-                          33433,33434,33435,33436,33437,33576,33578,33579,33583,33584,
-                          33585,33731,33732,33733,33734,33736,33737,33738,35013,35014,
-                          35015,35016,35019,35020,35021,35022,35023,35212,35213,35214,
-                          35215,35216,35217,35218,35219,35220,35221,40588,40591,40598,
-                          40601,40602,40603,40604,40618,40619,41074,41075,41076,41080];
-    
-    // Storing randomly selected zip onto the variable
-    var randomZip = randomZipArray[Math.floor(Math.random() * (100 - 0)) + 0];
-    
 
     // Passing the variables into the url for API call
-    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+randomSearch+"&location="+randomZip+"&count=5";
+    var url = "http://api.petfinder.com/pet.getRandom?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+randomSearch+"&output=basic";
     
-    // API call to get the data to show the random animal picture
+    // API call to get the data to show the random animal picture and information using 
+    //pet.getRandom method
     $.ajax({
     url: url,
-    dataType: 'jsonp',
-    method: 'GET',
+    dataType: 'jsonp',   
+    method: 'pet.getRandom',
     }).done(function(result) {
         
+        
         // Rendering the images of two randomly selected animals 
-        $(".randomImage").append('<tr><td>'+"<img src="+result.petfinder.pets.pet[0].media.photos.photo[1].$t+"/ >"+
-            '</td><td>'+ result.petfinder.pets.pet[0].name.$t+'</td><td>'+"<img src="+result.petfinder.pets.pet[1].media.photos.photo[1].$t+"/ >"+
-            '</td><td>'+ result.petfinder.pets.pet[1].name.$t+'</td></tr>');
+        $(".randomImage").append('<tr><td>'+"<img src="+result.petfinder.pet.media.photos.photo[1].$t+"/>"+
+            '</td><td>'+result.petfinder.pet.name.$t+
+            '</td><td>'+result.petfinder.pet.age.$t+
+            '</td><td>'+result.petfinder.pet.animal.$t+
+            '</td><td> from '+result.petfinder.pet.contact.city.$t+
+            '</td><td>, '+result.petfinder.pet.contact.state.$t+'</td></tr>');
 
 });
 }
 
 
 // Finding shelter's Latitudnal and Logitudnal positions
-function shelterFind(id){
+function shelterFind(id, number){
     var longitude = "";
     var latitude = "";
     var url = "http://api.petfinder.com/shelter.get?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&id="+id;
@@ -277,20 +248,36 @@ function shelterFind(id){
     dataType: 'jsonp',
     method: 'shelter.get',
     }).done(function(result) {
-           latitude = result.petfinder.shelter.latitude.$t;
-           longitude = result.petfinder.shelter.longitude.$t;
-           console.log(result);
-           console.log(latitude);
-           console.log(longitude);
+        latitude = result.petfinder.shelter.latitude.$t;
+        longitude = result.petfinder.shelter.longitude.$t;
+         // Coordinates to center the map
+            var myLatlng = new google.maps.LatLng(latitude,longitude);
+            var myCenter = new google.maps.LatLng(parseFloat(latitude)+.9,longitude-.9);
+ 
+            // Other options for the map, pretty much selfexplanatory
+            var mapOptions = {
+                zoom: 8,
+                center: myCenter,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var bounds  = new google.maps.LatLngBounds();
 
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: result.petfinder.shelter.name.$t
+            });
+
+            // Attach a map to the DOM Element, with the defined settings
+            map = new google.maps.Map(document.getElementById("map"+number), mapOptions);
+           console.log(result.petfinder.shelter);
        });
 
 }
 
-// not in the document.ready!
 //petfinder API function
 function callPets(animal, location, breed){
-    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location+"&count=10";
+    var url = "http://api.petfinder.com/pet.find?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+animal+"&location="+location+"&breed="+breed+"&size="+size+"&sex="+gender+"&age="+age+"&count=10";
     $.ajax({
     url: url,
     dataType: 'jsonp',
@@ -307,7 +294,6 @@ function callPets(animal, location, breed){
             }
             else{
                 shelterId = result.petfinder.pets.pet[i].shelterId.$t;
-                shelterFind(shelterId);
             }
 
             var tempBreed;
@@ -320,16 +306,36 @@ function callPets(animal, location, breed){
                  //$("#"+i).append(result.petfinder.pets.pet[i].breeds.breed[0].$t+" & "+result.petfinder.pets.pet[i].breeds.breed[1].$t);
             }
             
-            $("#resultsTable").append("<div class='showData row' id='"+i+"'><div class='col-md-4'><img src='"+result.petfinder.pets.pet[i].media.photos.photo[2].$t+"'/ ></div><div class='col-md-4'>"+result.petfinder.pets.pet[i].name.$t+"</div><div class='col-md-4'>"+tempBreed+"</div></div><div class='hideData row' data='hidden' id='a"+i+"'><div class='col-md-6'>"+result.petfinder.pets.pet[i].description.$t+"</div><div class='col-md-6'><div class='row' id='map'></div></div>");
+            $("#resultsTable").append("<div class='showData row' id='"+i+"'><div class='col-md-4'><img src='"+result.petfinder.pets.pet[i].media.photos.photo[2].$t+"'/ ></div><div class='col-md-4 text'>"+result.petfinder.pets.pet[i].name.$t+"</div><div class='col-md-4 text'>"+tempBreed+"</div></div><div class='hideData row' data='hidden' id='a"+i+"'><div class='col-md-6'>"+result.petfinder.pets.pet[i].description.$t+"</div><div class='col-md-6'><div class='row map' id='map"+i+"'></div></div>");
+             shelterFind(shelterId, i);
+
         }
 
     });
 };
 
+
+
+    function initMap(latitude, longitude) {
+        map = {
+            center: {lat: 40, lng: -80},
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        google.maps.event.addListener(map, "idle", function(){
+            google.maps.event.trigger(map, 'resize'); 
+        });
+    };
+
 randomPet();
 
 $(document).on("click", ".showData", function(){
+
     if($("#a"+$(this).attr("id")).attr('data') === "hidden"){
+        var upd = setInterval(function(){
+            window.dispatchEvent(new Event('resize'));
+            clearInterval(upd)
+        }, 500)
         $(".hideData").hide();
         $(".hideData").attr('data', 'hidden');
         $("#a"+$(this).attr("id")).show();
