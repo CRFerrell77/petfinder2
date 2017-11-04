@@ -221,7 +221,7 @@ function randomPet(){
     randomSearch = randomAnimalArray[Math.floor(Math.random() * (5 - 0)) + 0]; 
 
     // Passing the variables into the url for API call
-    var url = "http://api.petfinder.com/pet.getRandom?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+randomSearch+"&output=basic";
+    var url = "https://api.petfinder.com/pet.getRandom?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&animal="+randomSearch+"&output=basic";
     
     // API call to get the data to show the random animal picture and information using 
     //pet.getRandom method
