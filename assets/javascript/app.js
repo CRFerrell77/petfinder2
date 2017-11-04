@@ -322,7 +322,7 @@ function callPets(animal, location){
 
 callPets("dog", 61704);
 randomPet();
-shelterFind("IL14")
+
 $(document).on("click", ".showData", function(){
     if($("#a"+$(this).attr("id")).attr('data') === "hidden"){
         $("#a"+$(this).attr("id")).show();
