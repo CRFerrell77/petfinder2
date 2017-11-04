@@ -132,6 +132,12 @@ $(document).ready(function() {
         $("#keepTrack").html("<p id='keepTrack'>Keep track:</p>");
         //reset results
         $("#resultsTable").html("");
+        //reset dropdown name
+        $(".typeBtn").html("Type <span class='caret'></span>");
+        //reset zip code
+        $("#zipCode").val("");
+       //reset breed type 
+        $("#aniBreed").val("");
     };
 
     $("#resetBtn").click(function(event) {
