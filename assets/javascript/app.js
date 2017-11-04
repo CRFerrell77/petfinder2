@@ -275,10 +275,9 @@ function shelterFind(id){
     dataType: 'jsonp',
     method: 'shelter.get',
     }).done(function(result) {
-           console.log(result);
-           console.log(url);
            latitude = result.petfinder.shelter.latitude.$t;
            longitude = result.petfinder.shelter.longitude.$t;
+           console.log(result);
            console.log(latitude);
            console.log(longitude);
 
@@ -305,8 +304,9 @@ function callPets(animal, location){
             if(result.petfinder.pets.pet[i].shelterId === undefined)
                 shelterId = null;
             else{
-                console.log(result.petfinder.pets.pet[i].shelterId.$t);
                 shelterId = result.petfinder.pets.pet[i].shelterId.$t;
+                shelterFind(shelterId);
+
             }
 
             if(result.petfinder.pets.pet[i].breeds.breed[1] === undefined){
@@ -322,8 +322,7 @@ function callPets(animal, location){
 
 callPets("dog", 61704);
 randomPet();
-shelterFind("IL264")
-
+shelterFind("IL14")
 $(document).on("click", ".showData", function(){
     if($("#a"+$(this).attr("id")).attr('data') === "hidden"){
         $("#a"+$(this).attr("id")).show();
