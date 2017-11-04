@@ -265,6 +265,27 @@ function randomPet(){
 }
 
 
+// Finding shelter's Latitudnal and Logitudnal positions
+function shelterFind(id){
+    var longitude = "";
+    var latitude = "";
+    var url = "http://api.petfinder.com/shelter.get?format=json&key=0dbe85d873e32df55a5a7be564ae63a6&callback=?&id="+id;
+    $.ajax({
+    url: url,
+    dataType: 'jsonp',
+    method: 'shelter.get',
+    }).done(function(result) {
+           console.log(result);
+           console.log(url);
+           latitude = result.petfinder.shelter.latitude.$t;
+           longitude = result.petfinder.shelter.longitude.$t;
+           console.log(latitude);
+           console.log(longitude);
+
+       });
+
+}
+
 // not in the document.ready!
 //petfinder API function
 function callPets(animal, location){
@@ -282,9 +303,10 @@ function callPets(animal, location){
             // Getting the shelterId captured in an array
             // If shelterId is not there in API data then store Null in the array
             if(result.petfinder.pets.pet[i].shelterId === undefined)
-                shelterAddress = null;
+                shelterId = null;
             else{
                 console.log(result.petfinder.pets.pet[i].shelterId.$t);
+                shelterId = result.petfinder.pets.pet[i].shelterId.$t;
             }
 
             if(result.petfinder.pets.pet[i].breeds.breed[1] === undefined){
@@ -300,6 +322,7 @@ function callPets(animal, location){
 
 callPets("dog", 61704);
 randomPet();
+shelterFind("IL264")
 
 $(document).on("click", ".showData", function(){
     if($("#a"+$(this).attr("id")).attr('data') === "hidden"){
